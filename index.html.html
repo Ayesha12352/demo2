@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mood Music Player 🎧</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+<style>
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background: linear-gradient(to right, #141e30, #243b55);
+    color: white;
+    text-align: center;
+    transition: 0.5s;
+}
+
+h1 {
+    margin: 20px;
+}
+
+.moods button {
+    margin: 8px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.moods button:hover {
+    transform: scale(1.1);
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card {
+    background: #1e1e2f;
+    margin: 15px;
+    padding: 15px;
+    border-radius: 15px;
+    width: 220px;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.card img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+audio {
+    width: 100%;
+    margin-top: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Mood Music Player 🎧</h1>
+
+<div class="moods">
+    <button onclick="showMood('happy')">😊 Happy</button>
+    <button onclick="showMood('sad')">😢 Sad</button>
+    <button onclick="showMood('relax')">😌 Relax</button>
+    <button onclick="showMood('focus')">📚 Focus</button>
+    <button onclick="showMood('party')">🥳 Party</button>
+</div>
+
+<div id="songs" class="container"></div>
+
+<script>
+const data = {
+happy: [
+{
+title: "Happy - Pharrell Williams",
+img: "https://i.imgur.com/6r1GQ.jpg",
+audio: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+},
+{
+title: "Can't Stop The Feeling - Justin Timberlake",
+img: "https://i.imgur.com/FYy9p.jpg",
+audio: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"
+}
+],
+
+sad: [
+{
+title: "Someone Like You - Adele",
+img: "https://i.imgur.com/yXOvd.jpg",
+audio: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3"
+},
+{
+title: "Let Her Go - Passenger",
+img: "https://i.imgur.com/QpW6X.jpg",
+audio: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3"
+}
+],
+
+relax: [
+{
+title: "Weightless - Ambient",
+img: "https://i.imgur.com/1s8Xw.jpg",
+audio: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3"
+},
+{
+title: "Chill Vibes",
+img: "https://i.imgur.com/N5uCb.jpg",
+audio: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3"
+}
+],
+
+focus: [
+{
+title: "Lo-fi Study Beats",
+img: "https://i.imgur.com/4cXqY.jpg",
+audio: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3"
+},
+{
+title: "Deep Focus",
+img: "https://i.imgur.com/8qRkD.jpg",
+audio: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3"
+}
+],
+
+party: [
+{
+title: "Shape of You - Ed Sheeran",
+img: "https://i.imgur.com/7Xq7R.jpg",
+audio: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3"
+},
+{
+title: "Uptown Funk - Bruno Mars",
+img: "https://i.imgur.com/Vz81S.jpg",
+audio: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3"
+}
+]
+};
+
+function showMood(mood) {
+    const container = document.getElementById("songs");
+    container.innerHTML = "";
+
+    // Change background color based on mood
+    if(mood === "happy") document.body.style.background = "linear-gradient(to right, #f7971e, #ffd200)";
+    if(mood === "sad") document.body.style.background = "linear-gradient(to right, #2c3e50, #4ca1af)";
+    if(mood === "relax") document.body.style.background = "linear-gradient(to right, #56ab2f, #a8e063)";
+    if(mood === "focus") document.body.style.background = "linear-gradient(to right, #000428, #004e92)";
+    if(mood === "party") document.body.style.background = "linear-gradient(to right, #ff416c, #ff4b2b)";
+
+    data[mood].forEach(song => {
+        container.innerHTML += `
+        <div class="card">
+            <img src="${song.img}">
+            <h3>${song.title}</h3>
+            <audio controls>
+                <source src="${song.audio}" type="audio/mpeg">
+            </audio>
+        </div>
+        `;
+    });
+}
+</script>
+
+</body>
+</html>
